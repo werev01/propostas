@@ -1,0 +1,2252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workshop 5h · Diagnóstico Comercial Completo · WeRev</title>
+  <meta name="description" content="Workshop hands-on WeRev · Um panorama completo dos 4 Pilares, 5 Engrenagens e Gestão Financeira do Comercial em 5 horas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       IDENTIDADE VISUAL WEREV
+       ============================================ */
+    :root {
+      --azul-petroleo: #0C263B;
+      --azul-real: #083590;
+      --azul-hover: #5a89e0;
+      --off-white: #E2E3DE;
+      --mostarda: #C58A30;
+      --mostarda-clara: #D6A44D;
+      --mostarda-escura: #A67222;
+      --verde: #00a050;
+      --vermelho: #d92020;
+      --branco: #FFFFFF;
+      --cinza-escuro: #1a1a1a;
+      --cinza: #4A5568;
+      --cinza-claro: #F0F1EB;
+
+      --sombra-suave: 0 4px 20px rgba(12, 38, 59, 0.08);
+      --sombra-forte: 0 12px 40px rgba(12, 38, 59, 0.15);
+      --sombra-mostarda: 0 8px 30px rgba(197, 138, 48, 0.25);
+      --transition-suave: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--off-white);
+      color: var(--cinza-escuro);
+      overflow-x: hidden;
+      line-height: 1.55;
+    }
+
+    /* ============================================
+       PROGRESS BAR TOPO
+       ============================================ */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--mostarda), var(--mostarda-clara));
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s;
+      box-shadow: 0 0 10px rgba(197, 138, 48, 0.5);
+    }
+
+    /* ============================================
+       HERO FULLSCREEN
+       ============================================ */
+    .hero {
+      background: var(--azul-petroleo);
+      color: var(--off-white);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 70px 24px 80px;
+    }
+
+    /* Parallax de fundo */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: -20%;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(197,138,48,0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(8,53,144,0.35) 0%, transparent 45%);
+      transition: transform 0.3s ease-out;
+      z-index: 0;
+    }
+
+    /* Marca d'água gigante */
+    .hero::after {
+      content: '5h';
+      position: absolute;
+      right: -80px;
+      bottom: -120px;
+      font-size: 480px;
+      font-weight: 800;
+      color: rgba(197, 138, 48, 0.06);
+      line-height: 1;
+      pointer-events: none;
+      z-index: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      width: 100%;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* ============================================
+       VIDEO WRAPPER (novo)
+       ============================================ */
+    .hero-video-wrapper {
+      max-width: 960px;
+      margin: 44px auto 0;
+      position: relative;
+      opacity: 0;
+      animation: fadeInUp 1s var(--transition-suave) 0.75s forwards;
+    }
+
+    .hero-video-shell {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      border-radius: 20px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(12,38,59,0.6), rgba(8,53,144,0.4));
+      border: 1px solid rgba(197,138,48,0.25);
+      box-shadow:
+        0 30px 80px rgba(0,0,0,0.35),
+        0 0 0 1px rgba(197,138,48,0.15),
+        0 0 60px rgba(197,138,48,0.12);
+      transition: all 0.5s var(--transition-suave);
+    }
+
+    .hero-video-shell:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 40px 100px rgba(0,0,0,0.45),
+        0 0 0 1px rgba(197,138,48,0.3),
+        0 0 80px rgba(197,138,48,0.2);
+    }
+
+    .hero-video-shell iframe,
+    .hero-video-shell video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 20px;
+    }
+
+    /* Placeholder enquanto o vídeo não é adicionado */
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+      cursor: pointer;
+      transition: all 0.4s var(--transition-suave);
+      background:
+        radial-gradient(ellipse at center, rgba(197,138,48,0.12) 0%, transparent 70%),
+        linear-gradient(135deg, rgba(12,38,59,0.9), rgba(8,53,144,0.6));
+    }
+
+    .video-placeholder:hover .play-button {
+      transform: scale(1.1);
+      box-shadow:
+        0 20px 60px rgba(197,138,48,0.5),
+        0 0 0 8px rgba(197,138,48,0.15);
+    }
+
+    .play-button {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--mostarda), var(--mostarda-escura));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 15px 40px rgba(197,138,48,0.4),
+        0 0 0 0 rgba(197,138,48,0.4);
+      transition: all 0.4s var(--transition-suave);
+      animation: pulse-play 2.5s ease-in-out infinite;
+    }
+
+    .play-button::before {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 24px solid var(--branco);
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+      margin-left: 6px;
+    }
+
+    .video-placeholder-tag {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(197,138,48,0.15);
+      border: 1px solid rgba(197,138,48,0.3);
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--mostarda-clara);
+      text-transform: uppercase;
+    }
+
+    .video-placeholder-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--off-white);
+      max-width: 500px;
+      text-align: center;
+      padding: 0 30px;
+      line-height: 1.4;
+    }
+
+    .video-placeholder-sub {
+      font-size: 13px;
+      color: rgba(226,227,222,0.6);
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+
+    @keyframes pulse-play {
+      0%, 100% { box-shadow: 0 15px 40px rgba(197,138,48,0.4), 0 0 0 0 rgba(197,138,48,0.4); }
+      50% { box-shadow: 0 15px 40px rgba(197,138,48,0.5), 0 0 0 20px rgba(197,138,48,0); }
+    }
+
+    /* Legenda debaixo do vídeo */
+    .hero-video-caption {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 13px;
+      color: rgba(226,227,222,0.55);
+      letter-spacing: 0.3px;
+      font-style: italic;
+    }
+
+    .hero-video-caption strong {
+      color: var(--mostarda-clara);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    @media (max-width: 700px) {
+      .hero-video-wrapper { margin-top: 32px; }
+      .play-button { width: 68px; height: 68px; }
+      .play-button::before { border-left: 18px solid var(--branco); border-top: 12px solid transparent; border-bottom: 12px solid transparent; }
+      .video-placeholder-title { font-size: 15px; padding: 0 20px; }
+    }
+
+    .hero-tag {
+      display: inline-block;
+      padding: 8px 22px;
+      background: rgba(197, 138, 48, 0.15);
+      border: 1px solid rgba(197, 138, 48, 0.4);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--mostarda-clara);
+      margin-bottom: 32px;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeInUp 0.8s var(--transition-suave) 0.2s forwards;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 64px);
+      font-weight: 700;
+      line-height: 1.08;
+      margin-bottom: 20px;
+      letter-spacing: -1.2px;
+      opacity: 0;
+      animation: fadeInUp 0.9s var(--transition-suave) 0.4s forwards;
+    }
+
+    .hero h1 .destaque {
+      color: var(--mostarda);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero h1 .destaque::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: rgba(197, 138, 48, 0.25);
+      z-index: -1;
+      transform: skewX(-8deg);
+    }
+
+    .hero-slogan {
+      font-size: clamp(15px, 1.7vw, 19px);
+      font-weight: 300;
+      opacity: 0;
+      max-width: 720px;
+      margin: 0 auto;
+      color: rgba(226, 227, 222, 0.85);
+      animation: fadeInUp 1s var(--transition-suave) 0.6s forwards;
+    }
+
+    .hero-slogan strong { color: var(--mostarda-clara); font-weight: 500; }
+
+    .hero-metas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 38px;
+      opacity: 0;
+      animation: fadeInUp 1s var(--transition-suave) 1s forwards;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 22px;
+      background: rgba(226, 227, 222, 0.05);
+      border: 1px solid rgba(226, 227, 222, 0.12);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s var(--transition-suave);
+    }
+
+    .hero-meta:hover {
+      background: rgba(197, 138, 48, 0.1);
+      border-color: rgba(197, 138, 48, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .hero-meta-icon { font-size: 22px; margin-bottom: 4px; }
+    .hero-meta-label { font-size: 9.5px; letter-spacing: 1.1px; opacity: 0.6; text-transform: uppercase; margin-bottom: 2px; }
+    .hero-meta-value { font-size: 13.5px; font-weight: 600; color: var(--mostarda-clara); }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(226, 227, 222, 0.5);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      z-index: 1;
+      animation: fadeIn 1s 1.5s forwards, bob 2s 2.5s infinite;
+      opacity: 0;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scroll-indicator::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--mostarda), transparent);
+    }
+
+    /* ============================================
+       SECTIONS COMUNS
+       ============================================ */
+    section {
+      padding: 100px 24px;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 16px;
+      background: rgba(197, 138, 48, 0.1);
+      border: 1px solid rgba(197, 138, 48, 0.25);
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.6px;
+      color: var(--mostarda-escura);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .section-tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--mostarda);
+      border-radius: 50%;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 700;
+      color: var(--azul-petroleo);
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -0.8px;
+    }
+
+    .section-title .highlight { color: var(--mostarda); }
+
+    .section-subtitle {
+      font-size: 17px;
+      color: var(--cinza);
+      line-height: 1.6;
+      max-width: 720px;
+      margin-bottom: 60px;
+    }
+
+    /* ============================================
+       SEÇÃO O QUE É
+       ============================================ */
+    .oque {
+      background: var(--branco);
+      position: relative;
+    }
+
+    .oque-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .oque-content { grid-template-columns: 1fr; }
+    }
+
+    .oque-text p {
+      font-size: 16px;
+      color: var(--cinza);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .oque-text p strong { color: var(--azul-petroleo); }
+
+    .big-idea {
+      padding: 32px 36px;
+      background: linear-gradient(135deg, rgba(12,38,59,0.03), rgba(197,138,48,0.05));
+      border-left: 5px solid var(--mostarda);
+      border-radius: 0 16px 16px 0;
+      margin-top: 20px;
+      position: relative;
+    }
+
+    .big-idea::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 24px;
+      font-size: 78px;
+      color: var(--mostarda);
+      font-family: Georgia, serif;
+      line-height: 1;
+      opacity: 0.4;
+    }
+
+    .big-idea-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--mostarda-escura);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .big-idea-text {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--azul-petroleo);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* Cards de entregáveis */
+    .entregaveis-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .entregavel-card {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      padding: 22px 24px;
+      background: var(--branco);
+      border: 1px solid rgba(12, 38, 59, 0.08);
+      border-radius: 14px;
+      transition: all 0.4s var(--transition-suave);
+      cursor: default;
+    }
+
+    .entregavel-card:hover {
+      transform: translateX(8px);
+      border-color: var(--mostarda);
+      box-shadow: var(--sombra-mostarda);
+    }
+
+    .entregavel-num {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--mostarda), var(--mostarda-escura));
+      color: var(--branco);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .entregavel-info h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--azul-petroleo);
+      margin-bottom: 3px;
+    }
+
+    .entregavel-info p {
+      font-size: 12.5px;
+      color: var(--cinza);
+      line-height: 1.5;
+    }
+
+    /* ============================================
+       METODOLOGIA · 3 CAMADAS
+       ============================================ */
+    .metodologia {
+      background: var(--cinza-claro);
+      position: relative;
+    }
+
+    .metodologia::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 100px;
+      background: linear-gradient(to bottom, var(--branco), transparent);
+    }
+
+    .camada {
+      margin-bottom: 60px;
+    }
+
+    .camada-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .camada-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--azul-petroleo);
+      color: var(--mostarda);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .camada-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--azul-petroleo);
+    }
+
+    .camada-subtitle {
+      font-size: 13px;
+      color: var(--cinza);
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    .pilares-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .engrenagens-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .financeiro-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .pilares-grid { grid-template-columns: repeat(2, 1fr); }
+      .engrenagens-grid { grid-template-columns: repeat(2, 1fr); }
+      .financeiro-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 500px) {
+      .pilares-grid, .engrenagens-grid { grid-template-columns: 1fr; }
+    }
+
+    .pilar-card, .engrenagem-card, .financeiro-card {
+      background: var(--branco);
+      padding: 24px 22px;
+      border-radius: 16px;
+      border: 1px solid rgba(12, 38, 59, 0.06);
+      transition: all 0.5s var(--transition-suave);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pilar-card::before, .engrenagem-card::before, .financeiro-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--mostarda);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s var(--transition-suave);
+    }
+
+    .pilar-card:hover, .engrenagem-card:hover, .financeiro-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--sombra-forte);
+      border-color: var(--mostarda);
+    }
+
+    .pilar-card:hover::before, .engrenagem-card:hover::before, .financeiro-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card-num {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      color: var(--mostarda-escura);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .card-icon { font-size: 28px; margin-bottom: 10px; display: block; }
+
+    .card-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--azul-petroleo);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 12.5px;
+      color: var(--cinza);
+      line-height: 1.55;
+    }
+
+    .quote-metodologia {
+      margin-top: 60px;
+      padding: 36px 40px;
+      background: var(--azul-petroleo);
+      color: var(--off-white);
+      border-radius: 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-metodologia::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(197,138,48,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .quote-metodologia p {
+      font-size: 22px;
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.5;
+      position: relative;
+    }
+
+    .quote-metodologia p strong { color: var(--mostarda); font-weight: 700; }
+
+    /* ============================================
+       TIMELINE 5h
+       ============================================ */
+    .timeline-section {
+      background: var(--branco);
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding-left: 40px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        var(--mostarda) 10%,
+        var(--mostarda) 90%,
+        transparent 100%);
+    }
+
+    .tl-item {
+      position: relative;
+      padding: 18px 26px;
+      background: var(--branco);
+      border: 1px solid rgba(12, 38, 59, 0.08);
+      border-radius: 14px;
+      margin-bottom: 14px;
+      transition: all 0.4s var(--transition-suave);
+      display: grid;
+      grid-template-columns: 90px 1fr auto;
+      gap: 20px;
+      align-items: center;
+    }
+
+    @media (max-width: 700px) {
+      .tl-item { grid-template-columns: 60px 1fr; }
+      .tl-format { grid-column: 1 / -1; padding-left: 80px; }
+    }
+
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -33px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      background: var(--branco);
+      border: 3px solid var(--mostarda);
+      border-radius: 50%;
+      z-index: 1;
+      transition: all 0.3s var(--transition-suave);
+    }
+
+    .tl-item:hover {
+      transform: translateX(6px);
+      border-color: var(--mostarda);
+      box-shadow: var(--sombra-mostarda);
+    }
+
+    .tl-item:hover::before {
+      background: var(--mostarda);
+      transform: translateY(-50%) scale(1.3);
+      box-shadow: 0 0 0 6px rgba(197,138,48,0.15);
+    }
+
+    .tl-tempo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--mostarda);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tl-tempo-sub {
+      font-size: 10px;
+      color: var(--cinza);
+      font-weight: 500;
+      margin-top: 2px;
+      letter-spacing: 0.5px;
+    }
+
+    .tl-titulo {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--azul-petroleo);
+      margin-bottom: 3px;
+    }
+
+    .tl-desc {
+      font-size: 12px;
+      color: var(--cinza);
+      line-height: 1.4;
+    }
+
+    .tl-format {
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 6px 10px;
+      background: rgba(197,138,48,0.12);
+      color: var(--mostarda-escura);
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .tl-item.pausa {
+      background: rgba(197,138,48,0.06);
+      border-style: dashed;
+      opacity: 0.7;
+    }
+
+    .tl-item.pausa .tl-tempo { color: var(--cinza); }
+
+    .tl-item.destaque {
+      background: linear-gradient(135deg, rgba(197,138,48,0.05), rgba(197,138,48,0.02));
+      border-color: rgba(197,138,48,0.3);
+    }
+
+    .tl-item.destaque::before {
+      background: var(--mostarda);
+    }
+
+    .tl-item.total {
+      background: var(--azul-petroleo);
+      color: var(--off-white);
+      border-color: var(--azul-petroleo);
+      margin-top: 18px;
+    }
+
+    .tl-item.total::before {
+      background: var(--mostarda);
+      border-color: var(--mostarda);
+      width: 18px;
+      height: 18px;
+      left: -35px;
+    }
+
+    .tl-item.total .tl-tempo { color: var(--mostarda-clara); font-size: 22px; }
+    .tl-item.total .tl-titulo { color: var(--mostarda-clara); font-size: 18px; }
+    .tl-item.total .tl-desc { color: rgba(226,227,222,0.7); }
+    .tl-item.total .tl-format { background: rgba(197,138,48,0.2); color: var(--mostarda-clara); }
+
+    /* ============================================
+       DETALHAMENTO DOS BLOCOS
+       ============================================ */
+    .blocos-section {
+      background: var(--cinza-claro);
+    }
+
+    .blocos-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 800px) {
+      .blocos-grid { grid-template-columns: 1fr; }
+    }
+
+    .bloco-card {
+      background: var(--branco);
+      padding: 28px 30px;
+      border-radius: 16px;
+      border: 1px solid rgba(12,38,59,0.06);
+      transition: all 0.4s var(--transition-suave);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .bloco-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--sombra-forte);
+      border-color: rgba(197,138,48,0.3);
+    }
+
+    .bloco-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(12,38,59,0.06);
+    }
+
+    .bloco-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: var(--mostarda-escura);
+      text-transform: uppercase;
+    }
+
+    .bloco-titulo {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--azul-petroleo);
+      line-height: 1.25;
+      margin-top: 4px;
+    }
+
+    .bloco-tempo {
+      background: var(--azul-petroleo);
+      color: var(--mostarda-clara);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .bloco-descricao {
+      font-size: 13.5px;
+      color: var(--cinza);
+      line-height: 1.55;
+    }
+
+    .bloco-section-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--mostarda-escura);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .bloco-lista {
+      list-style: none;
+      padding: 0;
+    }
+
+    .bloco-lista li {
+      padding: 6px 0 6px 20px;
+      position: relative;
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--cinza-escuro);
+    }
+
+    .bloco-lista li::before {
+      content: '▪';
+      position: absolute;
+      left: 4px;
+      color: var(--mostarda);
+      font-weight: 700;
+    }
+
+    .bloco-quote {
+      padding: 12px 16px;
+      background: rgba(197,138,48,0.08);
+      border-left: 3px solid var(--mostarda);
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      font-size: 12.5px;
+      color: var(--azul-petroleo);
+      margin-top: 8px;
+    }
+
+    .bloco-badge {
+      display: inline-block;
+      padding: 3px 9px;
+      background: rgba(217, 32, 32, 0.1);
+      color: var(--vermelho);
+      border-radius: 5px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    .bloco-badge.wow {
+      background: linear-gradient(135deg, rgba(197,138,48,0.15), rgba(197,138,48,0.05));
+      color: var(--mostarda-escura);
+    }
+
+    /* ============================================
+       ENTREGÁVEIS DETALHADOS
+       ============================================ */
+    .entregaveis-section {
+      background: var(--branco);
+    }
+
+    .entregaveis-categorias {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .entregaveis-categorias { grid-template-columns: 1fr; }
+    }
+
+    .categoria-card {
+      padding: 32px 28px;
+      border-radius: 20px;
+      transition: all 0.4s var(--transition-suave);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .categoria-card.c1 { background: linear-gradient(135deg, rgba(0,160,80,0.06), rgba(0,160,80,0.02)); border: 1px solid rgba(0,160,80,0.2); }
+    .categoria-card.c2 { background: linear-gradient(135deg, rgba(197,138,48,0.08), rgba(197,138,48,0.02)); border: 1px solid rgba(197,138,48,0.25); }
+    .categoria-card.c3 { background: linear-gradient(135deg, rgba(8,53,144,0.06), rgba(8,53,144,0.02)); border: 1px solid rgba(8,53,144,0.2); }
+
+    .categoria-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--sombra-forte);
+    }
+
+    .categoria-icon { font-size: 36px; margin-bottom: 12px; display: block; }
+
+    .categoria-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .categoria-card.c1 .categoria-tag { color: var(--verde); }
+    .categoria-card.c2 .categoria-tag { color: var(--mostarda-escura); }
+    .categoria-card.c3 .categoria-tag { color: var(--azul-real); }
+
+    .categoria-titulo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--azul-petroleo);
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+
+    .categoria-lista {
+      list-style: none;
+    }
+
+    .categoria-lista li {
+      padding: 8px 0 8px 26px;
+      position: relative;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--cinza-escuro);
+      border-bottom: 1px dashed rgba(12,38,59,0.08);
+    }
+
+    .categoria-lista li:last-child { border-bottom: 0; }
+
+    .categoria-lista li::before {
+      content: '✓';
+      position: absolute;
+      left: 4px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .categoria-card.c1 .categoria-lista li::before { color: var(--verde); }
+    .categoria-card.c2 .categoria-lista li::before { color: var(--mostarda); }
+    .categoria-card.c3 .categoria-lista li::before { color: var(--azul-real); }
+
+    /* ============================================
+       PÚBLICO E INFRAESTRUTURA
+       ============================================ */
+    .publico-section {
+      background: var(--cinza-claro);
+    }
+
+    .publico-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .publico-grid { grid-template-columns: 1fr; }
+    }
+
+    .publico-card {
+      background: var(--branco);
+      padding: 32px 32px;
+      border-radius: 18px;
+      border: 1px solid rgba(12,38,59,0.06);
+    }
+
+    .publico-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--azul-petroleo);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .publico-card h3::before {
+      content: '';
+      width: 4px;
+      height: 24px;
+      background: var(--mostarda);
+      border-radius: 2px;
+    }
+
+    .publico-card ul { list-style: none; }
+
+    .publico-card li {
+      padding: 10px 0 10px 26px;
+      position: relative;
+      font-size: 13.5px;
+      color: var(--cinza-escuro);
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(12,38,59,0.05);
+    }
+
+    .publico-card li:last-child { border-bottom: 0; }
+
+    .publico-card li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--mostarda);
+      font-weight: 700;
+    }
+
+    .publico-card li strong { color: var(--azul-petroleo); }
+
+    .turma-tamanho {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .turma-card {
+      padding: 20px 16px;
+      background: rgba(197,138,48,0.06);
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid rgba(197,138,48,0.2);
+    }
+
+    .turma-card.ideal {
+      background: var(--azul-petroleo);
+      color: var(--off-white);
+      border-color: var(--azul-petroleo);
+    }
+
+    .turma-card-tag {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: var(--mostarda-escura);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .turma-card.ideal .turma-card-tag { color: var(--mostarda-clara); }
+
+    .turma-card-valor {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--azul-petroleo);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .turma-card.ideal .turma-card-valor { color: var(--mostarda-clara); }
+
+    .turma-card-label { font-size: 11px; color: var(--cinza); margin-top: 4px; }
+    .turma-card.ideal .turma-card-label { color: rgba(226,227,222,0.7); }
+
+    /* ============================================
+       SOBRE A WEREV
+       ============================================ */
+    .sobre-section {
+      background: var(--azul-petroleo);
+      color: var(--off-white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sobre-section::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(197,138,48,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .sobre-section .section-title { color: var(--off-white); position: relative; }
+    .sobre-section .section-title .highlight { color: var(--mostarda-clara); }
+    .sobre-section .section-subtitle { color: rgba(226,227,222,0.7); position: relative; }
+    .sobre-section .section-tag {
+      background: rgba(197,138,48,0.15);
+      border-color: rgba(197,138,48,0.3);
+      color: var(--mostarda-clara);
+    }
+
+    .autoridade-numeros {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 40px 0;
+      position: relative;
+    }
+
+    @media (max-width: 800px) {
+      .autoridade-numeros { grid-template-columns: 1fr; }
+    }
+
+    .numero-card {
+      padding: 30px 24px;
+      background: rgba(226,227,222,0.05);
+      border: 1px solid rgba(226,227,222,0.1);
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
+      transition: all 0.4s var(--transition-suave);
+      text-align: center;
+    }
+
+    .numero-card:hover {
+      background: rgba(197,138,48,0.08);
+      border-color: rgba(197,138,48,0.3);
+      transform: translateY(-4px);
+    }
+
+    .numero-valor {
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--mostarda);
+      line-height: 1;
+      margin-bottom: 8px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .numero-label {
+      font-size: 12.5px;
+      color: rgba(226,227,222,0.85);
+      line-height: 1.4;
+    }
+
+    .quote-sobre {
+      margin-top: 40px;
+      padding: 32px 40px;
+      background: rgba(197,138,48,0.08);
+      border-left: 4px solid var(--mostarda);
+      border-radius: 0 16px 16px 0;
+      font-size: 20px;
+      font-style: italic;
+      color: var(--off-white);
+      line-height: 1.55;
+      position: relative;
+    }
+
+    .quote-sobre strong { color: var(--mostarda-clara); font-weight: 600; font-style: normal; }
+
+    /* ============================================
+       CTA FINAL
+       ============================================ */
+    .cta-final {
+      background: linear-gradient(135deg, var(--branco), var(--cinza-claro));
+      text-align: center;
+    }
+
+    .cta-final .section-title {
+      font-size: clamp(28px, 4vw, 44px);
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .btn {
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s var(--transition-suave);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      border: 0;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: var(--mostarda);
+      color: var(--branco);
+      box-shadow: 0 4px 16px rgba(197,138,48,0.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--mostarda-escura);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(197,138,48,0.4);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--azul-petroleo);
+      border: 2px solid var(--azul-petroleo);
+    }
+
+    .btn-ghost:hover {
+      background: var(--azul-petroleo);
+      color: var(--off-white);
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    footer {
+      background: var(--azul-petroleo);
+      color: rgba(226,227,222,0.6);
+      padding: 40px 24px;
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: 0.4px;
+    }
+
+    footer strong { color: var(--mostarda-clara); }
+
+    /* ============================================
+       ANIMAÇÕES
+       ============================================ */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-8px); }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(197,138,48,0.4); }
+      70% { box-shadow: 0 0 0 16px rgba(197,138,48,0); }
+    }
+
+    /* Elementos que entram via scroll (JS controla) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s var(--transition-suave), transform 0.9s var(--transition-suave);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+  </style>
+</head>
+<body>
+
+<!-- Progress bar -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ============================================
+     HERO
+============================================ -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-tag">▌ WeRev · Inteligência Comercial</span>
+    <h1>Diagnóstico Comercial Completo em <span class="destaque">5 Horas</span></h1>
+    <p class="hero-slogan">
+      Você entra achando que precisa de <strong>mais leads</strong>. Sai sabendo exatamente onde está o <strong>balde furado</strong> — e como consertar cada furo.
+    </p>
+
+    <!-- ========================================================================
+         🎥 ESPAÇO PRO VÍDEO DE APRESENTAÇÃO (Google Vids)
+
+         COMO TROCAR O VÍDEO:
+         1. Grava sua explicação no Google Vids
+         2. Clica em "Compartilhar" → "Publicar na web" → copia o link de EMBED
+         3. Descomenta a linha <iframe> abaixo e cola o link no src=""
+         4. Deleta ou comenta a <div class="video-placeholder"> abaixo
+
+         Alternativas: Loom, YouTube, Vimeo — todos suportam iframe.
+         ======================================================================== -->
+    <div class="hero-video-wrapper">
+      <div class="hero-video-shell">
+
+        <!-- 👇 QUANDO TIVER O VÍDEO, DESCOMENTA ESTA LINHA E COLA O SRC AQUI: -->
+        <!--
+        <iframe
+          src="COLE-O-LINK-DO-EMBED-AQUI"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+        -->
+
+        <!-- 👇 PLACEHOLDER: DELETA ESTA DIV QUANDO O VÍDEO ESTIVER PRONTO -->
+        <div class="video-placeholder" onclick="alert('Vídeo em produção — em breve aqui!')">
+          <span class="video-placeholder-tag">▌ Preview do workshop</span>
+          <div class="play-button"></div>
+          <div class="video-placeholder-title">O Matheus explica o Workshop em 2 minutos</div>
+          <div class="video-placeholder-sub">Clique para assistir</div>
+        </div>
+
+      </div>
+      <div class="hero-video-caption">
+        📺 <strong>Assista antes de rolar</strong> — em 2 minutos você entende o que sua turma vai receber
+      </div>
+    </div>
+    <!-- ==================================================================== -->
+
+    <div class="hero-metas">
+      <div class="hero-meta">
+        <div class="hero-meta-icon">🛠️</div>
+        <div class="hero-meta-label">Formato</div>
+        <div class="hero-meta-value">Workshop hands-on</div>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-meta-icon">⏱️</div>
+        <div class="hero-meta-label">Duração</div>
+        <div class="hero-meta-value">5 horas</div>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-meta-icon">👥</div>
+        <div class="hero-meta-label">Público</div>
+        <div class="hero-meta-value">10 a 30 empresários</div>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-meta-icon">🎯</div>
+        <div class="hero-meta-label">Entregáveis</div>
+        <div class="hero-meta-value">3 documentos próprios</div>
+      </div>
+    </div><!-- /.hero-metas -->
+  </div><!-- /.hero-content -->
+</section>
+
+<!-- ============================================
+     O QUE É
+============================================ -->
+<section class="oque">
+  <div class="container">
+    <div class="oque-content">
+      <div class="reveal">
+        <span class="section-tag">▌ O produto</span>
+        <h2 class="section-title">O que é <span class="highlight">este workshop</span></h2>
+
+        <div class="oque-text">
+          <p>O <strong>WeRev · Diagnóstico Comercial Completo em 5 Horas</strong> é um workshop presencial hands-on onde cada participante faz um raio-x do próprio comercial usando a metodologia autoral WeRev — a mesma que gerou operações como Infuzion.</p>
+
+          <p>Não é aula. Não é palestra motivacional. É <strong>imersão operacional</strong> — cada bloco entrega um diagnóstico, um exercício e um entregável concreto que o participante leva pra empresa dele na segunda-feira.</p>
+        </div>
+
+        <div class="big-idea">
+          <div class="big-idea-tag">▌ BIG IDEA</div>
+          <div class="big-idea-text">Você entra achando que precisa de mais leads. Sai sabendo exatamente onde está o balde furado — e como consertar cada furo.</div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <div class="entregaveis-cards">
+          <div class="entregavel-card">
+            <div class="entregavel-num">1</div>
+            <div class="entregavel-info">
+              <h4>Raio-X dos 4 Pilares</h4>
+              <p>Diagnóstico completo dos gargalos do próprio comercial</p>
+            </div>
+          </div>
+          <div class="entregavel-card">
+            <div class="entregavel-num">2</div>
+            <div class="entregavel-info">
+              <h4>RCF de uma cadeira crítica</h4>
+              <p>Rotina · Comportamento · Função — preenchido ao vivo</p>
+            </div>
+          </div>
+          <div class="entregavel-card">
+            <div class="entregavel-num">3</div>
+            <div class="entregavel-info">
+              <h4>Plano de 30 dias</h4>
+              <p>3 ações concretas priorizadas — uma por pilar</p>
+            </div>
+          </div>
+          <div class="entregavel-card">
+            <div class="entregavel-num">+</div>
+            <div class="entregavel-info">
+              <h4>Kit de templates WeRev</h4>
+              <p>RCF, Método CRM, Motivos de Perda, Daily WeRev, FCA</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     METODOLOGIA
+============================================ -->
+<section class="metodologia">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">▌ Metodologia WeRev</span>
+      <h2 class="section-title">A arquitetura que percorremos <span class="highlight">nas 5 horas</span></h2>
+      <p class="section-subtitle">A Inteligência Comercial WeRev é a disciplina de tornar o resultado comercial previsível através de dados, processo e ação. Três camadas orientam o workshop:</p>
+    </div>
+
+    <!-- Camada 1: 4 Pilares -->
+    <div class="camada reveal">
+      <div class="camada-header">
+        <div class="camada-num">4</div>
+        <div>
+          <div class="camada-title">Pilares</div>
+          <div class="camada-subtitle">Onde o comercial pode estar quebrado (estado)</div>
+        </div>
+      </div>
+
+      <div class="pilares-grid">
+        <div class="pilar-card">
+          <div class="card-num">▌ PILAR 1</div>
+          <span class="card-icon">📥</span>
+          <div class="card-name">Demanda</div>
+          <div class="card-desc">De onde vem o lead. Frente A: Geração. Frente B: ML² e Aproveitamento.</div>
+        </div>
+        <div class="pilar-card">
+          <div class="card-num">▌ PILAR 2</div>
+          <span class="card-icon">👥</span>
+          <div class="card-name">Pessoas</div>
+          <div class="card-desc">Quem trabalha o lead. Régua de Cadeiras, RCF, Rampagem, Liderança.</div>
+        </div>
+        <div class="pilar-card">
+          <div class="card-num">▌ PILAR 3</div>
+          <span class="card-icon">⚙️</span>
+          <div class="card-name">Ferramentas</div>
+          <div class="card-desc">Com o que trabalham. CRM, stack, frameworks BANT · SPIN → NEPQ.</div>
+        </div>
+        <div class="pilar-card">
+          <div class="card-num">▌ PILAR 4</div>
+          <span class="card-icon">📊</span>
+          <div class="card-name">Dados</div>
+          <div class="card-desc">O que resulta. Motivos de Perda, Taxa de Passagem, Volumetria.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Camada 2: 5 Engrenagens -->
+    <div class="camada reveal">
+      <div class="camada-header">
+        <div class="camada-num">5</div>
+        <div>
+          <div class="camada-title">Engrenagens</div>
+          <div class="camada-subtitle">O que roda no dia a dia (movimento)</div>
+        </div>
+      </div>
+
+      <div class="engrenagens-grid">
+        <div class="engrenagem-card">
+          <div class="card-num">▌ ENGRENAGEM 1</div>
+          <span class="card-icon">🔁</span>
+          <div class="card-name">Rotina</div>
+          <div class="card-desc">Daily WeRev · Pipeline Review · FCA</div>
+        </div>
+        <div class="engrenagem-card">
+          <div class="card-num">▌ ENGRENAGEM 2</div>
+          <span class="card-icon">🔧</span>
+          <div class="card-name">Ferramentas</div>
+          <div class="card-desc">CRM e stack em operação contínua</div>
+        </div>
+        <div class="engrenagem-card">
+          <div class="card-num">▌ ENGRENAGEM 3</div>
+          <span class="card-icon">⚔️</span>
+          <div class="card-name">Campo de Batalha</div>
+          <div class="card-desc">Tempo + Energia + Clareza + Visualização</div>
+        </div>
+        <div class="engrenagem-card">
+          <div class="card-num">▌ ENGRENAGEM 4</div>
+          <span class="card-icon">📈</span>
+          <div class="card-name">Dados</div>
+          <div class="card-desc">Taxa de Passagem + Volumetria + Pessoas Trabalhadas</div>
+        </div>
+        <div class="engrenagem-card">
+          <div class="card-num">▌ ENGRENAGEM 5</div>
+          <span class="card-icon">🎯</span>
+          <div class="card-name">Melhoria Contínua</div>
+          <div class="card-desc">FCA semanal · treinamento cirúrgico</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Camada 3: Financeiro -->
+    <div class="camada reveal">
+      <div class="camada-header">
+        <div class="camada-num">$</div>
+        <div>
+          <div class="camada-title">Financeiro</div>
+          <div class="camada-subtitle">A prova numérica (dinheiro)</div>
+        </div>
+      </div>
+
+      <div class="financeiro-grid">
+        <div class="financeiro-card">
+          <div class="card-num">▌ COC</div>
+          <span class="card-icon">💰</span>
+          <div class="card-name">Custo Operacional Comercial</div>
+          <div class="card-desc">A saúde financeira do setor comercial — não da empresa toda. Rastreia Custo Fixo, Custo Variável e % sobre Cash Collected.</div>
+        </div>
+        <div class="financeiro-card">
+          <div class="card-num">▌ COMISSIONAMENTO</div>
+          <span class="card-icon">🎖️</span>
+          <div class="card-name">Comissão · Closer, SDR e Head</div>
+          <div class="card-desc">Estruturas por cadeira que alinham incentivo ao resultado. Ticket, Fixo, Progressão, Bônus. CAU realizada. Override.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-metodologia reveal">
+      <p>Pilares são as <strong>áreas</strong>. Engrenagens é o que <strong>roda</strong> de fato no dia a dia. E o Financeiro é onde tudo isso <strong>vira dinheiro</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     TIMELINE 5h
+============================================ -->
+<section class="timeline-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">▌ Estrutura das 5 horas</span>
+      <h2 class="section-title">A jornada dos <span class="highlight">11 blocos</span></h2>
+      <p class="section-subtitle">Ritmo controlado com equilíbrio deliberado entre fala e prática. Cada pilar recebe peso comparável, com aprofundamento no RCF.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div><div class="tl-tempo">15min</div><div class="tl-tempo-sub">Bloco 0</div></div>
+        <div><div class="tl-titulo">Manifesto · abertura + tese central</div><div class="tl-desc">Estabelece autoridade, tom e contrato do dia</div></div>
+        <span class="tl-format">Fala</span>
+      </div>
+
+      <div class="tl-item reveal">
+        <div><div class="tl-tempo">20min</div><div class="tl-tempo-sub">Bloco 1</div></div>
+        <div><div class="tl-titulo">Panorama · 4 Pilares + 5 Engrenagens</div><div class="tl-desc">O mapa completo da metodologia desenhado no palco</div></div>
+        <span class="tl-format">Fala</span>
+      </div>
+
+      <div class="tl-item reveal">
+        <div><div class="tl-tempo">30min</div><div class="tl-tempo-sub">Bloco 2</div></div>
+        <div><div class="tl-titulo">Pilar Demanda · Frente A + B · ML²</div><div class="tl-desc">Régua dos 200 leads · Caso Dourado · exercício de valor latente</div></div>
+        <span class="tl-format">Fala + exercício</span>
+      </div>
+
+      <div class="tl-item reveal">
+        <div><div class="tl-tempo">30min</div><div class="tl-tempo-sub">Bloco 3</div></div>
+        <div><div class="tl-titulo">Pilar Pessoas · Régua · RCF · Rampagem</div><div class="tl-desc">Panorama do pilar (o deep-dive vem no Bloco 7)</div></div>
+        <span class="tl-format">Fala + exercício</span>
+      </div>
+
+      <div class="tl-item pausa reveal">
+        <div><div class="tl-tempo">☕ 15min</div><div class="tl-tempo-sub">Pausa</div></div>
+        <div><div class="tl-titulo">Café</div><div class="tl-desc">Momento de troca informal entre participantes</div></div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div><div class="tl-tempo">30min</div><div class="tl-tempo-sub">Bloco 4</div></div>
+        <div><div class="tl-titulo">Pilar Ferramentas · Método CRM · Clickofobia</div><div class="tl-desc">Stack mínimo · 5 módulos · teste dos 5 cliques ao vivo</div></div>
+        <span class="tl-format">Fala + exercício</span>
+      </div>
+
+      <div class="tl-item reveal">
+        <div><div class="tl-tempo">30min</div><div class="tl-tempo-sub">Bloco 5</div></div>
+        <div><div class="tl-titulo">Pilar Dados · Motivos de Perda · Taxa · Volumetria</div><div class="tl-desc">Os 22 motivos · a mentira do "preço" · 80/20 do comercial</div></div>
+        <span class="tl-format">Fala + exercício</span>
+      </div>
+
+      <div class="tl-item pausa reveal">
+        <div><div class="tl-tempo">🍽️ 45min</div><div class="tl-tempo-sub">Pausa</div></div>
+        <div><div class="tl-titulo">Almoço</div><div class="tl-desc">Networking e digestão do conteúdo da manhã</div></div>
+      </div>
+
+      <div class="tl-item destaque reveal">
+        <div><div class="tl-tempo">45min</div><div class="tl-tempo-sub">Bloco 6</div></div>
+        <div><div class="tl-titulo">5 Engrenagens em ação · Daily WeRev ao vivo</div><div class="tl-desc">Simulação com 3 voluntários · o método rodando na frente da sala</div></div>
+        <span class="tl-format">Simulação</span>
+      </div>
+
+      <div class="tl-item destaque reveal">
+        <div><div class="tl-tempo">45min</div><div class="tl-tempo-sub">Bloco 7</div></div>
+        <div><div class="tl-titulo">Deep Dive · RCF preenchido ao vivo</div><div class="tl-desc">Cada empresário monta o RCF de uma cadeira real do time</div></div>
+        <span class="tl-format">Exercício profundo</span>
+      </div>
+
+      <div class="tl-item reveal">
+        <div><div class="tl-tempo">20min</div><div class="tl-tempo-sub">Bloco 8</div></div>
+        <div><div class="tl-titulo">Financeiro · COC + Comissionamento</div><div class="tl-desc">Demo ao vivo da CIC · a prova numérica da metodologia</div></div>
+        <span class="tl-format">Fala + demo</span>
+      </div>
+
+      <div class="tl-item reveal">
+        <div><div class="tl-tempo">20min</div><div class="tl-tempo-sub">Bloco 9</div></div>
+        <div><div class="tl-titulo">Plano de 30 dias · corrente de ação</div><div class="tl-desc">3 ações concretas · FCA aplicado · share em duplas</div></div>
+        <span class="tl-format">Individual + share</span>
+      </div>
+
+      <div class="tl-item reveal">
+        <div><div class="tl-tempo">15min</div><div class="tl-tempo-sub">Bloco 10</div></div>
+        <div><div class="tl-titulo">Encerramento · recap + CTA</div><div class="tl-desc">A corrente completa: Pilar → Engrenagem → Financeiro</div></div>
+        <span class="tl-format">Fala</span>
+      </div>
+
+      <div class="tl-item total reveal">
+        <div><div class="tl-tempo">5h20</div><div class="tl-tempo-sub">TOTAL</div></div>
+        <div><div class="tl-titulo">Workshop completo</div><div class="tl-desc">11 blocos · 4 pilares · 5 engrenagens · financeiro · 3 entregáveis</div></div>
+        <span class="tl-format">Imersão</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     DETALHAMENTO DOS BLOCOS
+============================================ -->
+<section class="blocos-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">▌ Bloco a bloco</span>
+      <h2 class="section-title">O que acontece <span class="highlight">em cada momento</span></h2>
+      <p class="section-subtitle">Fala densa + exercício prático em ritmo controlado. Nenhum bloco é decorativo — todos entregam clareza operacional.</p>
+    </div>
+
+    <div class="blocos-grid">
+
+      <div class="bloco-card reveal">
+        <div class="bloco-header">
+          <div>
+            <div class="bloco-num">▌ BLOCO 0</div>
+            <div class="bloco-titulo">Manifesto</div>
+          </div>
+          <div class="bloco-tempo">15min</div>
+        </div>
+        <p class="bloco-descricao">Abertura densa e curta. Manifesto WeRev, tese central e regra do jogo do dia.</p>
+        <div class="bloco-section-title">Frase âncora</div>
+        <div class="bloco-quote">"Perdemos mais do que vendemos — e é aí que está o maior potencial de crescimento."</div>
+      </div>
+
+      <div class="bloco-card reveal reveal-delay-1">
+        <div class="bloco-header">
+          <div>
+            <div class="bloco-num">▌ BLOCO 1</div>
+            <div class="bloco-titulo">Panorama da Metodologia</div>
+          </div>
+          <div class="bloco-tempo">20min</div>
+        </div>
+        <p class="bloco-descricao">Desenho do mapa completo no palco: 4 Pilares + 5 Engrenagens + Financeiro.</p>
+        <div class="bloco-section-title">Frase âncora</div>
+        <div class="bloco-quote">"Pilares são as áreas. Engrenagens é o que roda de fato."</div>
+      </div>
+
+      <div class="bloco-card reveal">
+        <div class="bloco-header">
+          <div>
+            <div class="bloco-num">▌ BLOCO 2</div>
+            <div class="bloco-titulo">Pilar Demanda + ML²</div>
+          </div>
+          <div class="bloco-tempo">30min</div>
+        </div>
+        <p class="bloco-descricao">Frente A (Geração) vs Frente B (Aproveitamento). Régua dos 200 leads. Caso Dourado.</p>
+        <div class="bloco-section-title">Exercício</div>
+        <ul class="bloco-lista">
+          <li>Cada participante estima leads parados na base</li>
+          <li>Cálculo de valor latente (leads × ticket médio)</li>
+          <li>Reveal coletivo: quem tem mais de R$ 1M no CRM?</li>
+        </ul>
+      </div>
+
+      <div class="bloco-card reveal reveal-delay-1">
+        <div class="bloco-header">
+          <div>
+            <div class="bloco-num">▌ BLOCO 3</div>
+            <div class="bloco-titulo">Pilar Pessoas</div>
+          </div>
+          <div class="bloco-tempo">30min</div>
+        </div>
+        <p class="bloco-descricao">Régua de Cadeiras · RCF (5 dimensões) · Rampagem · 9 Combinados. Panorama.</p>
+        <div class="bloco-section-title">Exercício</div>
+        <ul class="bloco-lista">
+          <li>Auto-diagnóstico rápido: organograma? RCF? Rampagem?</li>
+          <li>Preparação para o Deep Dive do Bloco 7</li>
+        </ul>
+      </div>
+
+      <div class="bloco-card reveal">
+        <div class="bloco-header">
+          <div>
+            <div class="bloco-num">▌ BLOCO 4</div>
+            <div class="bloco-titulo">Pilar Ferramentas</div>
+          </div>
+          <div class="bloco-tempo">30min</div>
+        </div>
+        <p class="bloco-descricao">Stack mínimo · Método CRM (5 módulos) · Clickofobia · Frameworks BANT/SPIN/NEPQ.</p>
+        <div class="bloco-section-title">Exercício</div>
+        <ul class="bloco-lista">
+          <li>Cada participante abre o CRM no celular ou notebook</li>
+          <li>Conta quantos cliques leva para registrar uma ligação</li>
+          <li>Share coletivo dos números (vai chocar)</li>
+        </ul>
+      </div>
+
+      <div class="bloco-card reveal reveal-delay-1">
+        <div class="bloco-header">
+          <div>
+            <div class="bloco-num">▌ BLOCO 5</div>
+            <div class="bloco-titulo">Pilar Dados</div>
+          </div>
+          <div class="bloco-tempo">30min</div>
+        </div>
+        <p class="bloco-descricao">Taxonomia dos 22 Motivos de Perda · Taxa de Passagem · Volumetria · Pessoas Trabalhadas.</p>
+        <div class="bloco-section-title">Exercício</div>
+        <ul class="bloco-lista">
+          <li>Cada participante escreve os 5 motivos mais comuns de perda</li>
+          <li>Reveal: 80% escreveu "preço" — e por que isso é mentira</li>
+        </ul>
+      </div>
+
+      <div class="bloco-card reveal">
+        <div class="bloco-header">
+          <div>
+            <div class="bloco-num">▌ BLOCO 6</div>
+            <div class="bloco-titulo">5 Engrenagens em Ação</div>
+          </div>
+          <div class="bloco-tempo">45min</div>
+        </div>
+        <p class="bloco-descricao">Simulação de Daily WeRev ao vivo com 3 voluntários do público. O método rodando na frente da sala — não teoria.</p>
+        <span class="bloco-badge wow">🔥 MOMENTO WOW</span>
+      </div>
+
+      <div class="bloco-card reveal reveal-delay-1">
+        <div class="bloco-header">
+          <div>
+            <div class="bloco-num">▌ BLOCO 7</div>
+            <div class="bloco-titulo">Deep Dive · RCF</div>
+          </div>
+          <div class="bloco-tempo">45min</div>
+        </div>
+        <p class="bloco-descricao">Cada participante escolhe uma cadeira do próprio time e preenche o RCF ao vivo com template WeRev. Show & Tell.</p>
+        <div class="bloco-quote">"Cargo sem RCF é cobrança sem combinado."</div>
+        <span class="bloco-badge wow">🎯 ENTREGÁVEL CONCRETO</span>
+      </div>
+
+      <div class="bloco-card reveal">
+        <div class="bloco-header">
+          <div>
+            <div class="bloco-num">▌ BLOCO 8</div>
+            <div class="bloco-titulo">Financeiro</div>
+          </div>
+          <div class="bloco-tempo">20min</div>
+        </div>
+        <p class="bloco-descricao">Demo ao vivo da CIC (Central de Inteligência Comercial) projetada no telão. COC · Comissionamento das 3 cadeiras.</p>
+        <div class="bloco-quote">"Gestão financeira do comercial é o que separa quem tem intuição de quem tem operação."</div>
+      </div>
+
+      <div class="bloco-card reveal reveal-delay-1">
+        <div class="bloco-header">
+          <div>
+            <div class="bloco-num">▌ BLOCO 9</div>
+            <div class="bloco-titulo">Plano de 30 Dias</div>
+          </div>
+          <div class="bloco-tempo">20min</div>
+        </div>
+        <p class="bloco-descricao">FCA aplicado. Cada participante escreve 3 ações concretas — uma por pilar.</p>
+        <div class="bloco-section-title">Estrutura</div>
+        <ul class="bloco-lista">
+          <li>1 ação do Pilar Demanda (ex: listar leads parados)</li>
+          <li>1 ação do Pilar Pessoas (ex: escrever RCF do SDR)</li>
+          <li>1 ação do Pilar Dados (ex: auditar motivos de perda)</li>
+          <li>Share em duplas — compromisso público</li>
+        </ul>
+      </div>
+
+      <div class="bloco-card reveal">
+        <div class="bloco-header">
+          <div>
+            <div class="bloco-num">▌ BLOCO 10</div>
+            <div class="bloco-titulo">Encerramento</div>
+          </div>
+          <div class="bloco-tempo">15min</div>
+        </div>
+        <p class="bloco-descricao">Recap dos 3 entregáveis. A corrente completa Pilar → Engrenagem → Financeiro. CTA e próximos passos.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     ENTREGÁVEIS DETALHADOS
+============================================ -->
+<section class="entregaveis-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">▌ O que fica pro participante</span>
+      <h2 class="section-title">3 categorias de <span class="highlight">entregável real</span></h2>
+      <p class="section-subtitle">Nada de "certificado bonito e obrigado". O participante sai com material que ele mesmo produziu + kit operacional + suporte pós-evento.</p>
+    </div>
+
+    <div class="entregaveis-categorias">
+
+      <div class="categoria-card c1 reveal">
+        <span class="categoria-icon">✍️</span>
+        <div class="categoria-tag">▌ CATEGORIA 1</div>
+        <div class="categoria-titulo">Feito por ele durante o workshop</div>
+        <ul class="categoria-lista">
+          <li>Diagnóstico dos 4 Pilares</li>
+          <li>RCF de uma cadeira crítica</li>
+          <li>Plano de 30 dias (3 ações)</li>
+        </ul>
+      </div>
+
+      <div class="categoria-card c2 reveal reveal-delay-1">
+        <span class="categoria-icon">📁</span>
+        <div class="categoria-tag">▌ CATEGORIA 2</div>
+        <div class="categoria-titulo">Kit de templates WeRev</div>
+        <ul class="categoria-lista">
+          <li>RCF em branco (5 cadeiras)</li>
+          <li>Planilha modelo Método CRM</li>
+          <li>Taxonomia dos 22 Motivos de Perda</li>
+          <li>Checklist Daily WeRev (6 passos)</li>
+          <li>Estrutura FCA semanal</li>
+        </ul>
+      </div>
+
+      <div class="categoria-card c3 reveal reveal-delay-2">
+        <span class="categoria-icon">🎬</span>
+        <div class="categoria-tag">▌ CATEGORIA 3</div>
+        <div class="categoria-titulo">Material de apoio pós-evento</div>
+        <ul class="categoria-lista">
+          <li>Gravação editada do workshop</li>
+          <li>Grupo WhatsApp exclusivo 30 dias</li>
+          <li>1 mentoria coletiva bônus (90 min)</li>
+          <li>Suporte para dúvidas de implementação</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     PÚBLICO E INFRAESTRUTURA
+============================================ -->
+<section class="publico-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">▌ Formato e público</span>
+      <h2 class="section-title">Para quem é e como <span class="highlight">funciona</span></h2>
+    </div>
+
+    <div class="publico-grid">
+
+      <div class="publico-card reveal">
+        <h3>Público-alvo</h3>
+        <ul>
+          <li><strong>Empresários</strong> com operação comercial ativa (B2B e high ticket)</li>
+          <li><strong>CEOs, sócios e diretores</strong> comerciais</li>
+          <li><strong>Líderes operacionais</strong> buscando estrutura para o próprio time</li>
+          <li><strong>Consultores</strong> comerciais que querem entender a metodologia WeRev</li>
+        </ul>
+      </div>
+
+      <div class="publico-card reveal reveal-delay-1">
+        <h3>Perfil ideal do participante</h3>
+        <ul>
+          <li>Empresa faturando entre <strong>R$ 50k e R$ 500k/mês</strong></li>
+          <li>Time comercial pequeno (<strong>2 a 15 pessoas</strong>)</li>
+          <li>Já tem <strong>CRM</strong> (mesmo que subutilizado)</li>
+          <li>Insatisfeito com <strong>previsibilidade</strong> do comercial atual</li>
+        </ul>
+      </div>
+
+      <div class="publico-card reveal">
+        <h3>Tamanho da turma</h3>
+        <div class="turma-tamanho">
+          <div class="turma-card">
+            <div class="turma-card-tag">MÍNIMO</div>
+            <div class="turma-card-valor">10</div>
+            <div class="turma-card-label">participantes</div>
+          </div>
+          <div class="turma-card ideal">
+            <div class="turma-card-tag">IDEAL</div>
+            <div class="turma-card-valor">15-20</div>
+            <div class="turma-card-label">atenção individual</div>
+          </div>
+          <div class="turma-card">
+            <div class="turma-card-tag">MÁXIMO</div>
+            <div class="turma-card-valor">30</div>
+            <div class="turma-card-label">participantes</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="publico-card reveal reveal-delay-1">
+        <h3>Infraestrutura necessária</h3>
+        <ul>
+          <li>Sala com <strong>mesas em U ou clusters</strong></li>
+          <li><strong>Projetor</strong> + tela grande (demo da CIC legível)</li>
+          <li><strong>Wi-Fi estável</strong> (exercícios com CRM próprio)</li>
+          <li><strong>Microfone</strong> + flipchart para simulação</li>
+          <li><strong>Café da manhã e almoço</strong> incluídos (recomendado)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SOBRE A WEREV
+============================================ -->
+<section class="sobre-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">▌ Sobre a WeRev</span>
+      <h2 class="section-title">Quem conduz este <span class="highlight">workshop</span></h2>
+      <p class="section-subtitle">
+        A WeRev é uma consultoria de Inteligência Comercial que instala metodologia e independência operacional em empresas de serviço, consultoria e infoproduto. <strong style="color: var(--mostarda-clara);">We (nós) + Rev (receita) = Nós, Receita.</strong>
+      </p>
+    </div>
+
+    <div class="autoridade-numeros">
+      <div class="numero-card reveal">
+        <div class="numero-valor" data-target="40">+R$ 0M</div>
+        <div class="numero-label">operados diretamente em 10 anos de mercado</div>
+      </div>
+      <div class="numero-card reveal reveal-delay-1">
+        <div class="numero-valor" data-target="399">R$ 0,00M</div>
+        <div class="numero-label">Case Infuzion · pico de faturamento em Nov/2025</div>
+      </div>
+      <div class="numero-card reveal reveal-delay-2">
+        <div class="numero-valor" data-target="22">0</div>
+        <div class="numero-label">motivos de perda mapeados na taxonomia WeRev</div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="quote-sobre">
+        <strong>Operação que depende de pessoa</strong> tem prazo de validade. Operação que <strong>tem método</strong> é eterna.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     CTA FINAL
+============================================ -->
+<section class="cta-final">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">▌ Próximos passos</span>
+      <h2 class="section-title">Pronto para <span class="highlight">transformar</span> o comercial da sua turma?</h2>
+      <p class="section-subtitle" style="margin: 0 auto 20px;">
+        Traga clareza, tranquilidade e previsibilidade para os empresários que confiam em você. Fale conosco para agendar a próxima edição — presencial ou in company.
+      </p>
+
+      <div class="cta-buttons">
+        <a href="#" class="btn btn-primary">📞 Falar com a WeRev</a>
+        <a href="#" class="btn btn-ghost">📄 Baixar escopo em PDF</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 <strong>WeRev</strong> · Inteligência Comercial</div>
+  <div style="margin-top: 8px; opacity: 0.7;">We (nós) + Rev (receita) = Nós, Receita.</div>
+</footer>
+
+<script>
+// ============================================
+// PROGRESS BAR
+// ============================================
+window.addEventListener('scroll', () => {
+  const scrollTop = window.pageYOffset;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  document.getElementById('progressBar').style.width = progress + '%';
+});
+
+// ============================================
+// FADE IN ON SCROLL
+// ============================================
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+    }
+  });
+}, {
+  threshold: 0.15,
+  rootMargin: '0px 0px -60px 0px'
+});
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ============================================
+// PARALLAX SUAVE NO HERO
+// ============================================
+const heroBefore = document.querySelector('.hero');
+window.addEventListener('scroll', () => {
+  const scrolled = window.pageYOffset;
+  if (scrolled < window.innerHeight && heroBefore) {
+    const beforeEl = heroBefore.querySelector('::before');
+    heroBefore.style.setProperty('--parallax', scrolled * 0.3 + 'px');
+    if (heroBefore.style) {
+      const before = window.getComputedStyle(heroBefore, '::before');
+    }
+    document.documentElement.style.setProperty('--parallax-y', -scrolled * 0.2 + 'px');
+  }
+});
+
+// Aplica o parallax de fato via CSS custom prop
+const style = document.createElement('style');
+style.textContent = '.hero::before { transform: translateY(var(--parallax-y, 0)); }';
+document.head.appendChild(style);
+
+// ============================================
+// NUMBER COUNTERS
+// ============================================
+function animateCounter(el, target, prefix, suffix, decimals = 0) {
+  const duration = 2000;
+  const start = 0;
+  const startTime = performance.now();
+
+  function update(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // easing out
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = start + (target - start) * eased;
+
+    let display;
+    if (decimals > 0) {
+      display = current.toFixed(decimals);
+    } else {
+      display = Math.round(current);
+    }
+
+    el.textContent = prefix + display + suffix;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+const numberObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.animated) {
+      entry.target.dataset.animated = 'true';
+      const target = parseFloat(entry.target.dataset.target);
+      const original = entry.target.textContent;
+
+      // Detecta prefixo e sufixo baseados no formato original
+      if (original.includes('+R$') && original.includes('M')) {
+        animateCounter(entry.target, target, '+R$ ', 'M');
+      } else if (original.includes('R$') && original.includes(',') && original.includes('M')) {
+        // R$ 3,99M format
+        animateCounter(entry.target, target / 100, 'R$ ', 'M', 2);
+      } else {
+        animateCounter(entry.target, target, '', '');
+      }
+    }
+  });
+}, { threshold: 0.4 });
+
+document.querySelectorAll('[data-target]').forEach(el => numberObserver.observe(el));
+
+// Ajuste para o número R$ 3,99M — quando o valor for 399, mostrar 3,99
+const infuzionEl = document.querySelector('[data-target="399"]');
+if (infuzionEl) {
+  const numberObserverInfuzion = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.customAnimated) {
+        entry.target.dataset.customAnimated = 'true';
+        const duration = 2200;
+        const start = 0;
+        const target = 3.99;
+        const startTime = performance.now();
+
+        function update(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = start + (target - start) * eased;
+          entry.target.textContent = 'R$ ' + current.toFixed(2).replace('.', ',') + 'M';
+          if (progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+      }
+    });
+  }, { threshold: 0.4 });
+  numberObserverInfuzion.observe(infuzionEl);
+}
+</script>
+
+</body>
+</html>
