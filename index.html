@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Workshop 5h · Diagnóstico Comercial Completo · WeRev</title>
-  <meta name="description" content="Workshop hands-on WeRev · Um panorama completo dos 4 Pilares, 5 Engrenagens e Gestão Financeira do Comercial em 5 horas.">
+  <title>Workshop In Company · Do balde furado à operação previsível · WeRev</title>
+  <meta name="description" content="Treinamento In Company WeRev · 5h · Como a Inteligência Comercial resolve o balde furado do seu comercial. R$ 5.997.">
+  <meta name="robots" content="index, follow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1289,6 +1290,455 @@
 
     .quote-sobre strong { color: var(--mostarda-clara); font-weight: 600; font-style: normal; }
 
+    /* Foto do Matheus na seção Sobre */
+    .sobre-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 50px;
+      align-items: start;
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .sobre-layout { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    .sobre-foto-wrapper {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      box-shadow:
+        0 25px 60px rgba(0,0,0,0.4),
+        0 0 0 1px rgba(197,138,48,0.3),
+        0 0 50px rgba(197,138,48,0.1);
+      transition: all 0.5s var(--transition-suave);
+    }
+
+    .sobre-foto-wrapper:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 35px 80px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(197,138,48,0.5),
+        0 0 70px rgba(197,138,48,0.2);
+    }
+
+    .sobre-foto {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s var(--transition-suave);
+    }
+
+    .sobre-foto-wrapper:hover .sobre-foto {
+      transform: scale(1.03);
+    }
+
+    .sobre-foto-badge {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      padding: 10px 14px;
+      background: rgba(12, 38, 59, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(197,138,48,0.3);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .sobre-foto-nome {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--off-white);
+    }
+
+    .sobre-foto-cargo {
+      font-size: 10px;
+      color: var(--mostarda-clara);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .sobre-foto-wrapper { max-width: 320px; margin: 0 auto; }
+    }
+
+    /* ============================================
+       INVESTIMENTO (nova seção)
+       ============================================ */
+    .investimento-section {
+      background: linear-gradient(180deg, var(--branco) 0%, var(--cinza-claro) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .investimento-section::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(197,138,48,0.06) 0%, transparent 60%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .investimento-card {
+      max-width: 640px;
+      margin: 40px auto 0;
+      background: var(--branco);
+      border: 2px solid rgba(197,138,48,0.25);
+      border-radius: 24px;
+      padding: 44px 44px 40px;
+      box-shadow:
+        0 30px 80px rgba(12, 38, 59, 0.12),
+        0 0 0 1px rgba(197,138,48,0.1),
+        0 0 60px rgba(197,138,48,0.08);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s var(--transition-suave);
+    }
+
+    .investimento-card:hover {
+      transform: translateY(-6px);
+      box-shadow:
+        0 40px 100px rgba(12, 38, 59, 0.18),
+        0 0 0 1px rgba(197,138,48,0.2),
+        0 0 80px rgba(197,138,48,0.15);
+    }
+
+    .investimento-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--mostarda), var(--mostarda-clara), var(--mostarda));
+    }
+
+    .investimento-header {
+      text-align: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(12,38,59,0.08);
+      margin-bottom: 24px;
+    }
+
+    .investimento-produto {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      color: var(--mostarda-escura);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .investimento-titulo {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--azul-petroleo);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .investimento-formato {
+      font-size: 13px;
+      color: var(--cinza);
+      margin-bottom: 20px;
+    }
+
+    .investimento-valor {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 4px;
+      margin: 20px 0 4px;
+    }
+
+    /* Sistema de valor escondido/revelado */
+    .valor-container {
+      margin: 20px 0 4px;
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .valor-oculto {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.5s var(--transition-suave);
+    }
+
+    .valor-oculto.hidden {
+      opacity: 0;
+      transform: scale(0.92);
+      pointer-events: none;
+      position: absolute;
+    }
+
+    .valor-preview {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--azul-petroleo);
+      opacity: 0.4;
+      letter-spacing: 1px;
+    }
+
+    .valor-preview .lock-icon {
+      font-size: 18px;
+    }
+
+    .btn-revelar {
+      padding: 14px 28px;
+      background: linear-gradient(135deg, var(--mostarda), var(--mostarda-escura));
+      color: var(--branco);
+      border: 0;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: all 0.3s var(--transition-suave);
+      box-shadow:
+        0 6px 20px rgba(197,138,48,0.35),
+        0 0 0 0 rgba(197,138,48,0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      animation: pulse-mostarda 2.5s ease-in-out infinite;
+    }
+
+    .btn-revelar:hover {
+      background: linear-gradient(135deg, var(--mostarda-escura), var(--mostarda));
+      transform: translateY(-2px);
+      box-shadow:
+        0 10px 30px rgba(197,138,48,0.5),
+        0 0 0 8px rgba(197,138,48,0);
+      animation: none;
+    }
+
+    .btn-revelar::before {
+      content: '👁';
+      font-size: 15px;
+    }
+
+    @keyframes pulse-mostarda {
+      0%, 100% { box-shadow: 0 6px 20px rgba(197,138,48,0.35), 0 0 0 0 rgba(197,138,48,0.4); }
+      50% { box-shadow: 0 6px 20px rgba(197,138,48,0.35), 0 0 0 12px rgba(197,138,48,0); }
+    }
+
+    .valor-revelado {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      transform: scale(0.85);
+      transition: all 0.6s var(--transition-suave);
+      pointer-events: none;
+    }
+
+    .valor-revelado.shown {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+      animation: revealBounce 0.7s var(--transition-suave);
+    }
+
+    @keyframes revealBounce {
+      0% { opacity: 0; transform: scale(0.7) translateY(20px); }
+      60% { opacity: 1; transform: scale(1.05) translateY(-4px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .valor-revelado .investimento-valor {
+      margin: 0 0 6px 0;
+    }
+
+    .valor-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      color: var(--mostarda-escura);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    /* Sparkles decorativos ao revelar */
+    .valor-container .sparkle {
+      position: absolute;
+      pointer-events: none;
+      font-size: 22px;
+      opacity: 0;
+      animation: sparkleFly 0.9s ease-out forwards;
+    }
+
+    @keyframes sparkleFly {
+      0% { opacity: 0; transform: scale(0) translateY(0); }
+      50% { opacity: 1; transform: scale(1.2) translateY(-20px); }
+      100% { opacity: 0; transform: scale(0.8) translateY(-40px); }
+    }
+
+    .investimento-moeda {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--azul-petroleo);
+      opacity: 0.7;
+    }
+
+    .investimento-numero {
+      font-size: 68px;
+      font-weight: 700;
+      color: var(--mostarda);
+      line-height: 1;
+      letter-spacing: -2px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .investimento-condicao {
+      font-size: 12px;
+      color: var(--cinza);
+      font-style: italic;
+    }
+
+    .investimento-beneficios {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 30px;
+    }
+
+    .investimento-beneficios li {
+      padding: 12px 0 12px 34px;
+      position: relative;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--cinza-escuro);
+      border-bottom: 1px solid rgba(12,38,59,0.05);
+    }
+
+    .investimento-beneficios li:last-child { border-bottom: 0; }
+
+    .investimento-beneficios li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 15px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(0, 160, 80, 0.12);
+      color: var(--verde);
+    }
+
+    .investimento-beneficios li::after {
+      content: '✓';
+      position: absolute;
+      left: 5px;
+      top: 12px;
+      color: var(--verde);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .investimento-beneficios li strong {
+      color: var(--azul-petroleo);
+      font-weight: 600;
+    }
+
+    .investimento-cta-buttons {
+      display: flex;
+      gap: 12px;
+      flex-direction: column;
+      margin-top: 24px;
+    }
+
+    @media (min-width: 600px) {
+      .investimento-cta-buttons { flex-direction: row; }
+    }
+
+    .btn-whatsapp {
+      flex: 1;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, #25D366, #1DA851);
+      color: var(--branco);
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s var(--transition-suave);
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+      border: 0;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .btn-whatsapp:hover {
+      background: linear-gradient(135deg, #1DA851, #189847);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
+    }
+
+    .btn-whatsapp svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .btn-secondary {
+      flex: 0 0 auto;
+      padding: 16px 24px;
+      background: transparent;
+      color: var(--azul-petroleo);
+      border: 2px solid var(--azul-petroleo);
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.3s var(--transition-suave);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-secondary:hover {
+      background: var(--azul-petroleo);
+      color: var(--off-white);
+    }
+
+    .investimento-footnote {
+      margin-top: 20px;
+      font-size: 11.5px;
+      color: var(--cinza);
+      text-align: center;
+      opacity: 0.75;
+      line-height: 1.5;
+    }
+
+    .investimento-footnote strong { color: var(--mostarda-escura); }
+
     /* ============================================
        CTA FINAL
        ============================================ */
@@ -1412,10 +1862,10 @@
 ============================================ -->
 <section class="hero">
   <div class="hero-content">
-    <span class="hero-tag">▌ WeRev · Inteligência Comercial</span>
-    <h1>Diagnóstico Comercial Completo em <span class="destaque">5 Horas</span></h1>
+    <span class="hero-tag">▌ Treinamento In Company · 5 horas</span>
+    <h1>Do <span class="destaque">"balde furado"</span> à operação previsível</h1>
     <p class="hero-slogan">
-      Você entra achando que precisa de <strong>mais leads</strong>. Sai sabendo exatamente onde está o <strong>balde furado</strong> — e como consertar cada furo.
+      Descubra como a <strong>Inteligência Comercial WeRev</strong> resolve o gargalo que trava sua receita — <strong>sem contratar mais vendedores</strong>, sem produto novo, sem depender de sorte.
     </p>
 
     <!-- ========================================================================
@@ -1445,13 +1895,13 @@
         <div class="video-placeholder" onclick="alert('Vídeo em produção — em breve aqui!')">
           <span class="video-placeholder-tag">▌ Preview do workshop</span>
           <div class="play-button"></div>
-          <div class="video-placeholder-title">O Matheus explica o Workshop em 2 minutos</div>
+          <div class="video-placeholder-title">O Matheus explica como consertar o "balde furado" em 2 minutos</div>
           <div class="video-placeholder-sub">Clique para assistir</div>
         </div>
 
       </div>
       <div class="hero-video-caption">
-        📺 <strong>Assista antes de rolar</strong> — em 2 minutos você entende o que sua turma vai receber
+        📺 <strong>Assista antes de rolar</strong> — em 2 minutos você entende como transformamos o comercial da sua equipe
       </div>
     </div>
     <!-- ==================================================================== -->
@@ -1460,7 +1910,7 @@
       <div class="hero-meta">
         <div class="hero-meta-icon">🛠️</div>
         <div class="hero-meta-label">Formato</div>
-        <div class="hero-meta-value">Workshop hands-on</div>
+        <div class="hero-meta-value">In Company hands-on</div>
       </div>
       <div class="hero-meta">
         <div class="hero-meta-icon">⏱️</div>
@@ -1470,7 +1920,7 @@
       <div class="hero-meta">
         <div class="hero-meta-icon">👥</div>
         <div class="hero-meta-label">Público</div>
-        <div class="hero-meta-value">10 a 30 empresários</div>
+        <div class="hero-meta-value">Até 30 pessoas do time</div>
       </div>
       <div class="hero-meta">
         <div class="hero-meta-icon">🎯</div>
@@ -1492,14 +1942,14 @@
         <h2 class="section-title">O que é <span class="highlight">este workshop</span></h2>
 
         <div class="oque-text">
-          <p>O <strong>WeRev · Diagnóstico Comercial Completo em 5 Horas</strong> é um workshop presencial hands-on onde cada participante faz um raio-x do próprio comercial usando a metodologia autoral WeRev — a mesma que gerou operações como Infuzion.</p>
+          <p>O <strong>WeRev · Diagnóstico Comercial Completo em 5 Horas</strong> é um <strong>treinamento in company</strong> hands-on onde cada participante faz um raio-x do próprio comercial usando a metodologia autoral WeRev — a mesma que gerou operações como Infuzion.</p>
 
-          <p>Não é aula. Não é palestra motivacional. É <strong>imersão operacional</strong> — cada bloco entrega um diagnóstico, um exercício e um entregável concreto que o participante leva pra empresa dele na segunda-feira.</p>
+          <p>Não é aula. Não é palestra motivacional. É <strong>imersão operacional</strong> — cada bloco entrega um diagnóstico, um exercício e um entregável concreto que sua equipe leva pra operar na segunda-feira.</p>
         </div>
 
         <div class="big-idea">
           <div class="big-idea-tag">▌ BIG IDEA</div>
-          <div class="big-idea-text">Você entra achando que precisa de mais leads. Sai sabendo exatamente onde está o balde furado — e como consertar cada furo.</div>
+          <div class="big-idea-text">Do "balde furado" à operação previsível — sem contratar mais vendedores, sem produto novo, sem depender de sorte.</div>
         </div>
       </div>
 
@@ -2063,25 +2513,40 @@
 <section class="sobre-section">
   <div class="container">
     <div class="reveal">
-      <span class="section-tag">▌ Sobre a WeRev</span>
-      <h2 class="section-title">Quem conduz este <span class="highlight">workshop</span></h2>
-      <p class="section-subtitle">
-        A WeRev é uma consultoria de Inteligência Comercial que instala metodologia e independência operacional em empresas de serviço, consultoria e infoproduto. <strong style="color: var(--mostarda-clara);">We (nós) + Rev (receita) = Nós, Receita.</strong>
-      </p>
+      <span class="section-tag">▌ Quem conduz</span>
+      <h2 class="section-title">Sobre <span class="highlight">a WeRev</span></h2>
     </div>
 
-    <div class="autoridade-numeros">
-      <div class="numero-card reveal">
-        <div class="numero-valor" data-target="40">+R$ 0M</div>
-        <div class="numero-label">operados diretamente em 10 anos de mercado</div>
+    <div class="sobre-layout">
+      <div class="reveal">
+        <div class="sobre-foto-wrapper">
+          <img src="matheus.jpg" alt="Matheus - Fundador WeRev" class="sobre-foto" loading="lazy">
+          <div class="sobre-foto-badge">
+            <span class="sobre-foto-nome">Matheus</span>
+            <span class="sobre-foto-cargo">Fundador WeRev</span>
+          </div>
+        </div>
       </div>
-      <div class="numero-card reveal reveal-delay-1">
-        <div class="numero-valor" data-target="399">R$ 0,00M</div>
-        <div class="numero-label">Case Infuzion · pico de faturamento em Nov/2025</div>
-      </div>
-      <div class="numero-card reveal reveal-delay-2">
-        <div class="numero-valor" data-target="22">0</div>
-        <div class="numero-label">motivos de perda mapeados na taxonomia WeRev</div>
+
+      <div class="reveal reveal-delay-1">
+        <p class="section-subtitle" style="margin-bottom: 24px;">
+          A WeRev é uma consultoria de Inteligência Comercial que instala metodologia e independência operacional em empresas de serviço, consultoria e infoproduto. <strong style="color: var(--mostarda-clara);">We (nós) + Rev (receita) = Nós, Receita.</strong>
+        </p>
+
+        <div class="autoridade-numeros" style="margin: 32px 0;">
+          <div class="numero-card">
+            <div class="numero-valor" data-target="40">+R$ 0M</div>
+            <div class="numero-label">operados diretamente em 10 anos de mercado</div>
+          </div>
+          <div class="numero-card">
+            <div class="numero-valor" data-target="399">R$ 0,00M</div>
+            <div class="numero-label">Case Infuzion · pico Nov/2025</div>
+          </div>
+          <div class="numero-card">
+            <div class="numero-valor" data-target="22">0</div>
+            <div class="numero-label">motivos de perda mapeados</div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -2094,20 +2559,70 @@
 </section>
 
 <!-- ============================================
-     CTA FINAL
+     INVESTIMENTO
 ============================================ -->
-<section class="cta-final">
+<section class="investimento-section">
   <div class="container">
-    <div class="reveal">
-      <span class="section-tag">▌ Próximos passos</span>
-      <h2 class="section-title">Pronto para <span class="highlight">transformar</span> o comercial da sua turma?</h2>
+    <div class="reveal" style="text-align: center;">
+      <span class="section-tag">▌ Investimento</span>
+      <h2 class="section-title">Pronto para <span class="highlight">transformar</span> o comercial da sua empresa?</h2>
       <p class="section-subtitle" style="margin: 0 auto 20px;">
-        Traga clareza, tranquilidade e previsibilidade para os empresários que confiam em você. Fale conosco para agendar a próxima edição — presencial ou in company.
+        Sua equipe comercial. Toda a metodologia WeRev instalada em 5 horas de imersão. <strong style="color: var(--mostarda-escura);">Descubra abaixo o investimento.</strong>
       </p>
+    </div>
 
-      <div class="cta-buttons">
-        <a href="#" class="btn btn-primary">📞 Falar com a WeRev</a>
-        <a href="#" class="btn btn-ghost">📄 Baixar escopo em PDF</a>
+    <div class="investimento-card reveal">
+      <div class="investimento-header">
+        <div class="investimento-produto">▌ Workshop In Company · 5 Horas</div>
+        <div class="investimento-titulo">Diagnóstico Comercial Completo</div>
+        <div class="investimento-formato">Presencial · Turma até 30 pessoas</div>
+
+        <div class="valor-container" id="valor-container">
+          <!-- Estado 1: valor oculto (padrão) -->
+          <div class="valor-oculto" id="valor-oculto">
+            <div class="valor-preview">
+              <span class="lock-icon">🔒</span>
+              <span>R$ • • • •</span>
+            </div>
+            <button type="button" class="btn-revelar" id="btn-revelar" aria-label="Revelar valor do investimento">
+              Ver valor do investimento
+            </button>
+          </div>
+
+          <!-- Estado 2: valor revelado (aparece após clique) -->
+          <div class="valor-revelado" id="valor-revelado">
+            <div class="valor-label">▌ VALOR DO INVESTIMENTO</div>
+            <div class="investimento-valor">
+              <span class="investimento-moeda">R$</span>
+              <span class="investimento-numero">5.997</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ul class="investimento-beneficios">
+        <li><strong>5 horas de workshop hands-on</strong> percorrendo os 4 Pilares, 5 Engrenagens e Financeiro</li>
+        <li><strong>3 entregáveis concretos</strong> por participante: Raio-X + RCF + Plano de 30 dias</li>
+        <li><strong>Kit completo de templates WeRev</strong> em formato digital editável</li>
+        <li><strong>Gravação editada</strong> do workshop para revisão com o time</li>
+        <li><strong>Grupo WhatsApp exclusivo por 30 dias</strong> com o Matheus para tirar dúvidas</li>
+        <li><strong>1 mentoria coletiva bônus</strong> (90 min · 30 dias após o workshop)</li>
+      </ul>
+
+      <div class="investimento-cta-buttons">
+        <a href="https://wa.me/5531998007873?text=Ol%C3%A1%20Matheus%2C%20quero%20saber%20mais%20sobre%20o%20Workshop%20de%205h%20da%20WeRev." class="btn-whatsapp" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Falar com o Matheus no WhatsApp
+        </a>
+        <a href="#" class="btn-secondary">
+          📄 Baixar escopo em PDF
+        </a>
+      </div>
+
+      <div class="investimento-footnote">
+        Formato aberto (múltiplas empresas) sob consulta · <strong>Descontos progressivos</strong> para múltiplas edições contratadas antecipadamente
       </div>
     </div>
   </div>
@@ -2119,6 +2634,44 @@
 </footer>
 
 <script>
+// ============================================
+// REVEAL VALOR (botão "Ver valor do investimento")
+// ============================================
+const btnRevelar = document.getElementById('btn-revelar');
+const valorOculto = document.getElementById('valor-oculto');
+const valorRevelado = document.getElementById('valor-revelado');
+const valorContainer = document.getElementById('valor-container');
+
+if (btnRevelar) {
+  btnRevelar.addEventListener('click', () => {
+    // Esconde o botão
+    valorOculto.classList.add('hidden');
+
+    // Delay pequeno pra sensação de "revelação"
+    setTimeout(() => {
+      // Revela o valor com animação
+      valorRevelado.classList.add('shown');
+
+      // Sparkles decorativos
+      const sparkles = ['✨', '💎', '⭐', '✨', '⭐'];
+      sparkles.forEach((emoji, i) => {
+        const s = document.createElement('span');
+        s.className = 'sparkle';
+        s.textContent = emoji;
+        // posição aleatória em torno do valor
+        const angle = (i / sparkles.length) * Math.PI * 2;
+        const distance = 60 + Math.random() * 40;
+        s.style.left = `calc(50% + ${Math.cos(angle) * distance}px)`;
+        s.style.top = `calc(50% + ${Math.sin(angle) * distance / 2}px)`;
+        s.style.animationDelay = `${i * 0.08}s`;
+        valorContainer.appendChild(s);
+        // remove após animar
+        setTimeout(() => s.remove(), 1200);
+      });
+    }, 200);
+  });
+}
+
 // ============================================
 // PROGRESS BAR
 // ============================================
