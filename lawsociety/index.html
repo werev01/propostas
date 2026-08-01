@@ -342,10 +342,9 @@ p{margin:0 0 16px; max-width:68ch}
       <span class="video-meta">Vídeo · não listado</span>
     </div>
 
-    <!-- ═══ TROQUE APENAS O ID ABAIXO ═══
-         Do link https://youtu.be/AbC123xyz  →  o ID é AbC123xyz
-         Ou de https://www.youtube.com/watch?v=AbC123xyz  →  AbC123xyz -->
-    <div class="player" id="player" data-video="COLE_O_ID_AQUI"
+    <!-- Vídeo do YouTube (não listado). Para trocar, altere apenas o data-video abaixo:
+         de https://youtu.be/Z0E62s7oI4M  →  o ID é Z0E62s7oI4M -->
+    <div class="player" id="player" data-video="Z0E62s7oI4M"
          role="button" tabindex="0" aria-label="Reproduzir apresentação em vídeo"></div>
 
     <p class="video-note">Uma leitura rápida da operação: como o time atua no salão no dia 25,
@@ -599,7 +598,7 @@ const PLACEHOLDER = !VID || VID === 'COLE_O_ID_AQUI';
 
 if (PLACEHOLDER) {
   pl.innerHTML = '<div class="ph"><b>Espaço reservado para o vídeo</b>' +
-    '<code>data-video="COLE_O_ID_AQUI"</code>' +
+    '<code>data-video="Z0E62s7oI4M"</code>' +
     '<span>Substitua pelo ID do vídeo não listado do YouTube. ' +
     'Em https://youtu.be/AbC123xyz o ID é AbC123xyz.</span></div>';
   pl.style.cursor = 'default';
