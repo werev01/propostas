@@ -467,10 +467,11 @@ p{margin:0 0 16px; max-width:68ch}
         <div><dt>Contratos totais</dt><dd data-f="ct">45</dd></div>
         <div><dt>Faturamento</dt><dd data-f="fat">R$ 3.643.682</dd></div>
         <div><dt>Comissão aplicável</dt><dd data-f="pct">2,5%</dd></div>
-        <div class="accent"><dt>Investimento total</dt><dd data-f="coc">R$ 115.909</dd></div>
+        <div class="accent"><dt>Faturamento líquido</dt><dd data-f="liq">R$ 3.527.773</dd></div>
       </dl>
-      <p class="rail-note">Faixa de comissão apurada sobre o faturamento total do evento, somando
-      novos membros e renovações. Premissas completas e sensibilidade por público na planilha em anexo.</p>
+      <p class="rail-note">Faturamento líquido já descontada a remuneração da operação comercial.
+      Faixa apurada sobre o faturamento total do evento, somando novos membros e renovações.
+      Premissas completas e sensibilidade por público na planilha em anexo.</p>
     </div>
   </div>
 </section>
@@ -575,9 +576,9 @@ p{margin:0 0 16px; max-width:68ch}
 
 <script>
 const D = [
-  {nm:'20', rn:'10', ct:'30', fat:'R$ 2.429.121', pct:'1,5%', coc:'R$ 59.564'},
-  {nm:'30', rn:'15', ct:'45', fat:'R$ 3.643.682', pct:'2,5%', coc:'R$ 115.909'},
-  {nm:'40', rn:'20', ct:'60', fat:'R$ 4.858.242', pct:'2,5%', coc:'R$ 147.212'}
+  {nm:'20', rn:'10', ct:'30', fat:'R$ 2.429.121', pct:'1,5%', liq:'R$ 2.369.557'},
+  {nm:'30', rn:'15', ct:'45', fat:'R$ 3.643.682', pct:'2,5%', liq:'R$ 3.527.773'},
+  {nm:'40', rn:'20', ct:'60', fat:'R$ 4.858.242', pct:'2,5%', liq:'R$ 4.711.030'}
 ];
 const pins = [...document.querySelectorAll('.pin')];
 const ro = document.getElementById('ro');
