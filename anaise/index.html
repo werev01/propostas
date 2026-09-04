@@ -480,7 +480,7 @@ p{margin:0 0 16px; max-width:68ch}
 <script>
 const pl = document.getElementById('player');
 const VID = pl.dataset.video;
-const PLACEHOLDER = !VID || VID === 'gdTGDMsgr0k';
+const PLACEHOLDER = !VID || VID === 'COLE_O_ID_AQUI';
 
 function loadVideo(){
   pl.innerHTML = '<iframe src="https://www.youtube.com/embed/' + VID +
@@ -489,7 +489,7 @@ function loadVideo(){
 
 if (PLACEHOLDER) {
   pl.innerHTML = '<div class="ph"><b>Espaço reservado para o vídeo</b>' +
-    '<code>data-video="gdTGDMsgr0k"</code>' +
+    '<code>data-video="COLE_O_ID_AQUI"</code>' +
     '<span>Substitua pelo ID do vídeo não listado do YouTube quando estiver pronto.</span></div>';
 } else {
   pl.addEventListener('click', loadVideo, { once:true });
