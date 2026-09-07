@@ -99,7 +99,7 @@ p{margin:0 0 16px; max-width:68ch}
 .scope-sec .eyebrow::after{background:var(--panel-rule)}
 .scope-sec .scope{background:var(--panel-rule); border-color:var(--panel-rule)}
 .scope-sec .scope > div::after{opacity:.07}
-.scope{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); margin-top:14px}
+.scope{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); margin-top:14px}
 .scope > div{background:var(--paper); padding:30px 28px; position:relative; overflow:hidden}
 .scope > div::after{
   content:''; position:absolute; right:-16px; bottom:-18px; width:88px; height:94px; opacity:.05;
@@ -183,6 +183,12 @@ p{margin:0 0 16px; max-width:68ch}
 .value-gate.locked .tiers td:last-child{filter:blur(7px); user-select:none; transition:filter .35s ease}
 .reveal-wrap{display:flex; justify-content:center; margin-top:18px}
 .reveal-wrap.hidden{display:none}
+.gantt-visual{margin-top:26px; overflow-x:auto}
+.gantt-visual svg{display:block; min-width:640px}
+.gantt-footer{
+  display:flex; align-items:center; justify-content:space-between; gap:20px;
+  flex-wrap:wrap; margin-top:26px; padding-top:22px; border-top:1px solid var(--rule);
+}
 .reveal-btn{
   font-family:inherit; font-size:14.5px; font-weight:600; letter-spacing:.02em;
   color:#fff; background:var(--signal); border:none; border-radius:999px;
@@ -307,6 +313,7 @@ p{margin:0 0 16px; max-width:68ch}
   section{padding:64px 0}
   .hero h1{margin-top:52px}
   .tl-row{grid-template-columns:1fr; gap:6px}
+  .scope{grid-template-columns:1fr}
   .rail{height:230px; margin:0 34px}
   .pin{width:104px}
   .pin .val{font-size:14px}
@@ -426,22 +433,79 @@ p{margin:0 0 16px; max-width:68ch}
   <div class="wrap">
     <p class="eyebrow">Cronograma</p>
     <h2>Como o projeto se distribui ao longo dos 12 meses</h2>
-    <div class="tl">
-      <div class="tl-row peak"><span class="when">Out · Dez / 2026</span>
-        <span class="what"><strong>Fase 1: Diagnóstico e Entrega da Versão 1</strong>
-        <span>Integração do Pipedrive, visualização de atividades e reuniões, apontamento dos funis de tráfego.</span></span></div>
-      <div class="tl-row"><span class="when">Jan · Mar / 2027</span>
-        <span class="what"><strong>Fase 2: Auditoria, Roadmap e Versão 2</strong>
-        <span>Auditoria do tratamento das informações, roadmap com prazos e responsáveis, construção da V2 dos dashboards.</span></span></div>
-      <div class="tl-row"><span class="when">Abr · Jun / 2027</span>
-        <span class="what"><strong>Fase 3: Integração de WhatsApp</strong>
-        <span>Integração do WhatsApp ao CIC para microgerenciamento do time comercial.</span></span></div>
-      <div class="tl-row peak"><span class="when">Jul · Set / 2027</span>
-        <span class="what"><strong>Fase 4: Documentação e Consolidação</strong>
-        <span>Documentação do processo e consolidação de rotinas, garantindo independência do comercial.</span></span></div>
+    <div class="gantt-visual">
+      <svg viewBox="0 0 1180 502" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cronograma do projeto em 4 fases ao longo de 12 meses">
+      <text x="373.8" y="18" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" fill="#5A6B7B" text-anchor="middle" letter-spacing="0.03em">OUT</text>
+      <text x="441.2" y="18" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" fill="#5A6B7B" text-anchor="middle" letter-spacing="0.03em">NOV</text>
+      <text x="508.8" y="18" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" fill="#5A6B7B" text-anchor="middle" letter-spacing="0.03em">DEZ</text>
+      <text x="576.2" y="18" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" fill="#5A6B7B" text-anchor="middle" letter-spacing="0.03em">JAN</text>
+      <text x="643.8" y="18" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" fill="#5A6B7B" text-anchor="middle" letter-spacing="0.03em">FEV</text>
+      <text x="711.2" y="18" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" fill="#5A6B7B" text-anchor="middle" letter-spacing="0.03em">MAR</text>
+      <text x="778.8" y="18" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" fill="#5A6B7B" text-anchor="middle" letter-spacing="0.03em">ABR</text>
+      <text x="846.2" y="18" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" fill="#5A6B7B" text-anchor="middle" letter-spacing="0.03em">MAI</text>
+      <text x="913.8" y="18" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" fill="#5A6B7B" text-anchor="middle" letter-spacing="0.03em">JUN</text>
+      <text x="981.2" y="18" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" fill="#5A6B7B" text-anchor="middle" letter-spacing="0.03em">JUL</text>
+      <text x="1048.8" y="18" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" fill="#5A6B7B" text-anchor="middle" letter-spacing="0.03em">AGO</text>
+      <text x="1116.2" y="18" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" fill="#5A6B7B" text-anchor="middle" letter-spacing="0.03em">SET</text>
+      <text x="342.0" y="34" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#0A58CA" font-weight="700">2026</text>
+      <text x="544.5" y="34" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#0A58CA" font-weight="700">2027</text>
+      <line x1="340" y1="42" x2="1150" y2="42" stroke="#E4E9EF" stroke-width="1"/>
+      <line x1="340.0" y1="40" x2="340.0" y2="488" stroke="#E4E9EF" stroke-width="1"/>
+      <line x1="407.5" y1="40" x2="407.5" y2="488" stroke="#E4E9EF" stroke-width="1"/>
+      <line x1="475.0" y1="40" x2="475.0" y2="488" stroke="#E4E9EF" stroke-width="1"/>
+      <line x1="542.5" y1="40" x2="542.5" y2="488" stroke="#E4E9EF" stroke-width="1"/>
+      <line x1="610.0" y1="40" x2="610.0" y2="488" stroke="#E4E9EF" stroke-width="1"/>
+      <line x1="677.5" y1="40" x2="677.5" y2="488" stroke="#E4E9EF" stroke-width="1"/>
+      <line x1="745.0" y1="40" x2="745.0" y2="488" stroke="#E4E9EF" stroke-width="1"/>
+      <line x1="812.5" y1="40" x2="812.5" y2="488" stroke="#E4E9EF" stroke-width="1"/>
+      <line x1="880.0" y1="40" x2="880.0" y2="488" stroke="#E4E9EF" stroke-width="1"/>
+      <line x1="947.5" y1="40" x2="947.5" y2="488" stroke="#E4E9EF" stroke-width="1"/>
+      <line x1="1015.0" y1="40" x2="1015.0" y2="488" stroke="#E4E9EF" stroke-width="1"/>
+      <line x1="1082.5" y1="40" x2="1082.5" y2="488" stroke="#E4E9EF" stroke-width="1"/>
+      <line x1="1150.0" y1="40" x2="1150.0" y2="488" stroke="#E4E9EF" stroke-width="1"/>
+      <line x1="340.0" y1="40" x2="340.0" y2="488" stroke="#5A6B7B" stroke-opacity="0.28" stroke-width="1.2"/>
+      <line x1="542.5" y1="40" x2="542.5" y2="488" stroke="#5A6B7B" stroke-opacity="0.28" stroke-width="1.2"/>
+      <line x1="745.0" y1="40" x2="745.0" y2="488" stroke="#5A6B7B" stroke-opacity="0.28" stroke-width="1.2"/>
+      <line x1="947.5" y1="40" x2="947.5" y2="488" stroke="#5A6B7B" stroke-opacity="0.28" stroke-width="1.2"/>
+      <line x1="1150.0" y1="40" x2="1150.0" y2="488" stroke="#5A6B7B" stroke-opacity="0.28" stroke-width="1.2"/>
+      <text x="0" y="66" font-family="IBM Plex Mono, monospace" font-size="12" fill="#0A58CA" font-weight="600" letter-spacing="0.02em">Out · Dez / 2026</text>
+      <text x="0" y="87.0" font-family="Space Grotesk, Arial, sans-serif" font-size="16" fill="#16202A" font-weight="700">FASE 1: Diagnóstico e Entrega</text>
+      <text x="0" y="108.0" font-family="Space Grotesk, Arial, sans-serif" font-size="16" fill="#16202A" font-weight="700">da Versão 1</text>
+      <text x="0" y="141.0" font-family="Space Grotesk, Arial, sans-serif" font-size="12.5" fill="#5A6B7B">Integração do Pipedrive, visualização de atividades</text>
+      <text x="0" y="157.5" font-family="Space Grotesk, Arial, sans-serif" font-size="12.5" fill="#5A6B7B">e reuniões, apontamento dos funis de tráfego.</text>
+      <rect x="344.0" y="76.0" width="194.5" height="40" rx="9" fill="#0A2647"/>
+      <text x="441.2" y="101.0" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.04em">FASE 1</text>
+      <line x1="0" y1="152.0" x2="1180" y2="152.0" stroke="#E4E9EF" stroke-width="1"/>
+      <text x="0" y="178" font-family="IBM Plex Mono, monospace" font-size="12" fill="#0A58CA" font-weight="600" letter-spacing="0.02em">Jan · Mar / 2027</text>
+      <text x="0" y="199.0" font-family="Space Grotesk, Arial, sans-serif" font-size="16" fill="#16202A" font-weight="700">FASE 2: Auditoria, Roadmap e</text>
+      <text x="0" y="220.0" font-family="Space Grotesk, Arial, sans-serif" font-size="16" fill="#16202A" font-weight="700">Versão 2</text>
+      <text x="0" y="253.0" font-family="Space Grotesk, Arial, sans-serif" font-size="12.5" fill="#5A6B7B">Auditoria das informações, roadmap com prazos e</text>
+      <text x="0" y="269.5" font-family="Space Grotesk, Arial, sans-serif" font-size="12.5" fill="#5A6B7B">responsáveis, construção da V2 dos dashboards.</text>
+      <rect x="546.5" y="188.0" width="194.5" height="40" rx="9" fill="#0A58CA"/>
+      <text x="643.8" y="213.0" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.04em">FASE 2</text>
+      <line x1="0" y1="264.0" x2="1180" y2="264.0" stroke="#E4E9EF" stroke-width="1"/>
+      <text x="0" y="290" font-family="IBM Plex Mono, monospace" font-size="12" fill="#0A58CA" font-weight="600" letter-spacing="0.02em">Abr · Jun / 2027</text>
+      <text x="0" y="311.0" font-family="Space Grotesk, Arial, sans-serif" font-size="16" fill="#16202A" font-weight="700">FASE 3: Integração de WhatsApp</text>
+      <text x="0" y="344.0" font-family="Space Grotesk, Arial, sans-serif" font-size="12.5" fill="#5A6B7B">Integração do WhatsApp ao CIC para</text>
+      <text x="0" y="360.5" font-family="Space Grotesk, Arial, sans-serif" font-size="12.5" fill="#5A6B7B">microgerenciamento do time comercial.</text>
+      <rect x="749.0" y="300.0" width="194.5" height="40" rx="9" fill="#1C7ED6"/>
+      <text x="846.2" y="325.0" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.04em">FASE 3</text>
+      <line x1="0" y1="376.0" x2="1180" y2="376.0" stroke="#E4E9EF" stroke-width="1"/>
+      <text x="0" y="402" font-family="IBM Plex Mono, monospace" font-size="12" fill="#0A58CA" font-weight="600" letter-spacing="0.02em">Jul · Set / 2027</text>
+      <text x="0" y="423.0" font-family="Space Grotesk, Arial, sans-serif" font-size="16" fill="#16202A" font-weight="700">FASE 4: Documentação e</text>
+      <text x="0" y="444.0" font-family="Space Grotesk, Arial, sans-serif" font-size="16" fill="#16202A" font-weight="700">Consolidação</text>
+      <text x="0" y="477.0" font-family="Space Grotesk, Arial, sans-serif" font-size="12.5" fill="#5A6B7B">Documentação do processo e consolidação de rotinas,</text>
+      <text x="0" y="493.5" font-family="Space Grotesk, Arial, sans-serif" font-size="12.5" fill="#5A6B7B">garantindo independência do comercial.</text>
+      <rect x="951.5" y="412.0" width="194.5" height="40" rx="9" fill="#AAD4FF"/>
+      <text x="1048.8" y="437.0" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="700" fill="#0A2647" text-anchor="middle" letter-spacing="0.04em">FASE 4</text>
+      <line x1="0" y1="488.0" x2="1180" y2="488.0" stroke="#E4E9EF" stroke-width="1"/>
+      </svg>
     </div>
-    <p class="video-note" style="margin-top:22px">Cronograma detalhado semana a semana, com responsável
-    por entrega e datas ajustáveis, na planilha em anexo.</p>
+    <div class="gantt-footer">
+      <p class="video-note" style="margin:0">Cronograma detalhado semana a semana, com responsável
+      por entrega e datas ajustáveis, na planilha em anexo.</p>
+      <a class="reveal-btn" href="https://docs.google.com/spreadsheets/d/1ZxMwUKPeU7ByHoNpNDh7VEZ5VcLsUhUOIQrFr9vCczQ/edit?gid=2053643953#gid=2053643953" target="_blank" rel="noopener" style="text-decoration:none; white-space:nowrap">Abrir cronograma detalhado ↗</a>
+    </div>
   </div>
 </section>
 
